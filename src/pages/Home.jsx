@@ -1,4 +1,5 @@
-import Footer from "../components/footer"
+import Footer from "../components/Footer" 
+
 
 const Home = () => {
   return (
@@ -18,7 +19,7 @@ const Home = () => {
             </article>
         </section>
         {/* Footer */}
-        <Footer />
+        <Footer/>
     </section>
   )
 }
