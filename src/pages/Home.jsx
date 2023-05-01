@@ -21,11 +21,11 @@ const Home = () => {
                 <div>
                     <img src="/images/pokedex.png" alt="" />
                 </div>
-                <h2>Hola Entrenador!</h2>
-                <p>Para poder comenzar, dame tu nombre:</p>           
+                <h2>Hello trainer!</h2>
+                <p>Give me your name, to start !:</p>           
                 <form onSubmit={handleSubmit}>
-                    <input id="nameTrainer" type="text" placeholder="Tu nombre..." />
-                    <button>Comenzar</button>
+                    <input id="nameTrainer" type="text" placeholder="Your Name..." />
+                    <button>Start!</button>
                 </form>
             </article>
         </section>
