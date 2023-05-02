@@ -26,7 +26,7 @@ const PokemonCard = ({pokemonUrl}) => {
 
   return (
      
-    <article className={`text-center border-8 rounded-md ${bordersByType[pokemon?.types[0].type.name]}`}>
+    <Link to={`/pokedex/${pokemon?.id}`} className={`text-center border-8 rounded-md ${bordersByType[pokemon?.types[0].type.name]}`}>
         {/* Seccion superior */}
         <section className={`bg-gradient-to-b ${backgroundByType[pokemon?.types[0].type.name]} relative h-[150px]`}>
             <div className="absolute -bottom-12 w-[200px] left-1/2 -translate-x-1/2">
@@ -54,7 +54,7 @@ const PokemonCard = ({pokemonUrl}) => {
 
         </section>
 
-    </article>
+    </Link>
   )
 }
 
