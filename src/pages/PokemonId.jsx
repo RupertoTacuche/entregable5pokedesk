@@ -27,7 +27,7 @@ const PokemonId = () => {
             <h3>Stats</h3>
             <section>
               {
-                pokemon.stats.map(stat => (
+                pokemon?.stats.map(stat => (
                   <article>
                     <section>
                       <h5>{stat.stat.name}</h5>
