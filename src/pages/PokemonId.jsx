@@ -14,7 +14,10 @@ const PokemonId = () => {
       .then((res) => setPokemon(res.data))
       .catch((err) => console.log(err))
   },[])
-
+const getPercentStatbar = (stat_base) => {
+  const percentBarProgress = (stat_base * 100) /150
+  return `w-[${percentBarProgress}%]`
+}
   return (
     <section>
       <Header />
@@ -28,11 +31,14 @@ const PokemonId = () => {
             <section>
               {
                 pokemon?.stats.map(stat => (
-                  <article>
-                    <section>
-                      <h5>{stat.stat.name}</h5>
+                  <article key={stat.stat.name}>
+                    <section className="flex justify-between">
+                      <h5 className="capitalize">{stat.stat.name}</h5>
                       <span>{stat.base_stat}/150</span>
                     </section>
+                    <div className=" bg-gray-100 h-6 rounded-sm">
+                      <div className={`h-full ${getPercentStatbar(stat.base_stat)} w-[30%] bg-gradient-to-r  from-yellow-300 to-yellow-600`}></div>
+                    </div>
                   </article>
 
                 ))
