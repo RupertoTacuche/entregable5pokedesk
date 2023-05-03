@@ -15,8 +15,8 @@ const PokemonId = () => {
       .catch((err) => console.log(err))
   },[])
 const getPercentStatbar = (stat_base) => {
-  const percentBarProgress = (stat_base * 100) /150
-  return `w-[${percentBarProgress}%]`
+  const percentBarProgress = (stat_base * 100) /255
+  return `${percentBarProgress}%`
 }
   return (
     <section>
@@ -37,7 +37,7 @@ const getPercentStatbar = (stat_base) => {
                       <span>{stat.base_stat}/150</span>
                     </section>
                     <div className=" bg-gray-100 h-6 rounded-sm">
-                      <div className={`h-full ${getPercentStatbar(stat.base_stat)} w-[30%] bg-gradient-to-r  from-yellow-300 to-yellow-600`}></div>
+                      <div style={{"width": getPercentStatbar(stat.base_stat)}} className={`h-full  bg-gradient-to-r  from-yellow-300 to-yellow-600`}></div>
                     </div>
                   </article>
 
