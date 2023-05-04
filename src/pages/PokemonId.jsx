@@ -2,29 +2,31 @@ import { useEffect, useState } from "react";
 import Header from "../components/pokedex/Header";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { Logout } from "../components/Logout";
 
 const PokemonId = () => {
   const [pokemon, setPokemon] = useState();
   const { id } = useParams();
 
-  const bordersByType = {
-    grass: "border-[#B1DBBC]",
-    fire: "border-[#E6901E]",
-    water: "border-[#83B9FF]",
-    bug: "border-[#AAFFA8]",
-    normal: "border-[#BA707F]",
-    poison: "border-[#5B3184]",
-    ground: "border-[#9C6614]",
-    electric: "border-[#2B319B]",
-    fairy: "border-[#C5597E]",
-    fighting: "border-[#96402A]",
-    psychic: "border-[#9BB7AD]",
-    rock: "border-[#7E7E7E]",
-    ghost: "border-[#323569]",
-    ice: "border-[#6FBEDF]",
-    dragon: "border-[#56A4AE]",
-    dark: "border-[#0B0E0D]",
-    steel: "border-[#9BB7AD]",
+  const backType = {
+    grass: "bg-[#B1DBBC]",
+    fire: "bg-[#E6901E]",
+    water: "bg-[#83B9FF]",
+    bug: "bg-[#AAFFA8]",
+    normal: "bg-[#BA707F]",
+    flying: "bg-[#BA707F]",
+    poison: "bg-[#5B3184]",
+    ground: "bg-[#9C6614]",
+    electric: "bg-[#2B319B]",
+    fairy: "bg-[#C5597E]",
+    fighting: "bg-[#96402A]",
+    psychic: "bg-[#9BB7AD]",
+    rock: "bg-[#7E7E7E]",
+    ghost: "bg-[#323569]",
+    ice: "bg-[#6FBEDF]",
+    dragon: "bg-[#56A4AE]",
+    dark: "bg-[#0B0E0D]",
+    steel: "bg-[#9BB7AD]",
   };
 
   const backgroundByType = {
@@ -78,12 +80,14 @@ const PokemonId = () => {
     const percentBarProgress = (stat_base * 100) / 255;
     return `${percentBarProgress}%`;
   };
+
+  console.log(pokemon);
   return (
     <section>
       <Header />
 
       <section className="px-2 py-14">
-        <article className="max-w-[768px] mx-auto shadow-xl p-2">
+        <article className="max-w-[1000px] mx-auto shadow-xl p-2">
           {/* Seccion superior */}
           <section
             className={`bg-gradient-to-b ${
@@ -99,10 +103,10 @@ const PokemonId = () => {
           </section>
 
           {/* Informacion general*/}
-          <section>
+          <section className="px-4">
             <div>
               <h3
-                className={`text-center ${
+                className={`text-center text-[25px] md:text-[40px] ${
                   titleCard[pokemon?.types[0].type.name]
                 }`}
               >
@@ -112,7 +116,7 @@ const PokemonId = () => {
             <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-2">
               <hr />
               <h2
-                className={`capitalize font-bold text-[45px] ${
+                className={`capitalize font-bold text-[30px]   md:text-[45px] ${
                   titleCard[pokemon?.types[0].type.name]
                 }`}
               >
@@ -124,21 +128,29 @@ const PokemonId = () => {
             <div className="flex justify-center gap-6 text-center">
               <div>
                 <h5>Weight</h5>
-                <span>{pokemon?.weight}</span>
+                <span className=" font-semibold text-[20px]">
+                  {pokemon?.weight}
+                </span>
               </div>
               <div>
                 <h5>Height</h5>
-                <span>{pokemon?.height}</span>
+                <span className=" font-semibold text-[20px]">
+                  {pokemon?.height}
+                </span>
               </div>
             </div>
-            <section className="grid sm:grid-cols-2 gap-4">
+            <section className="grid sm:grid-cols-2 gap-4 mt-5">
               {/* Tipos */}
               <section className="text-center">
-                <h3>Types</h3>
+                <h3 className="text-[20px]  md:text-[25px] font-semibold">
+                  Types
+                </h3>
                 <section className="grid grid-cols-2 gap-4 mt-4 ">
                   {pokemon?.types.map((type) => (
                     <article
-                      className="p-2 px-8 border-[1px] border-gray-300 capitalize "
+                      className={`p-2 px-8 border-[1px] border-gray-300 capitalize text-white ${
+                        backType[type.type.name]
+                      }`}
                       key={type.type.name}
                     >
                       {type.type.name}
@@ -148,7 +160,9 @@ const PokemonId = () => {
               </section>
               {/* Habilidades */}
               <section className="text-center">
-                <h3>Abilities</h3>
+                <h3 className="text-[20px]  md:text-[25px] font-semibold">
+                  Abilities
+                </h3>
                 <section className="grid grid-cols-2 gap-4 mt-4 ">
                   {pokemon?.abilities.map((ability) => (
                     <article
@@ -163,8 +177,11 @@ const PokemonId = () => {
             </section>
           </section>
           {/* seccion de stats */}
-          <section>
-            <h3>Stats</h3>
+          <section className="px-4">
+            <div className="flex items-center gap-3 mt-5">
+              <h3 className="text-[25px] md:text-[40px] font-bold">Stats</h3>
+              <hr className="w-full" />
+            </div>
             <section>
               {pokemon?.stats.map((stat) => (
                 <article key={stat.stat.name}>
@@ -183,7 +200,24 @@ const PokemonId = () => {
             </section>
           </section>
         </article>
+
+        {/* seccion de movements */}
+        <section className="max-w-[1000px] mx-auto shadow-xl mt-5 p-5">
+          <div className="flex items-center gap-3 mb-5">
+            <h3 className="text-[25px]  md:text-[40px] font-bold">Movements</h3>
+            <hr className="w-full" />
+          </div>
+          <section className="flex flex-wrap gap-3">
+            {pokemon?.moves.map((move) => (
+              <div className=" bg-[#E5E5E5] px-3 py-2 rounded-2xl">
+                {" "}
+                {move.move.name}
+              </div>
+            ))}
+          </section>
+        </section>
       </section>
+      <Logout />
     </section>
   );
 };

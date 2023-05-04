@@ -3,6 +3,7 @@ import Header from "../components/pokedex/Header";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import PokemonCard from "../components/pokedex/PokemonCard";
+import { Logout } from "../components/Logout";
 
 const Pokedex = () => {
   const [pokemons, setPokemons] = useState([]);
@@ -165,7 +166,7 @@ const Pokedex = () => {
           <li
             onClick={() => setCurrentPage(numberPage)}
             className={`p-3 bg-red-600 font-bold text-white rounded-md cursor-pointer ${
-              numberPage === currentPage && " bg-blue-950"
+              numberPage === currentPage && " bg-red-300"
             }`}
             key={numberPage}
           >
@@ -179,6 +180,7 @@ const Pokedex = () => {
           {">"}
         </li>
       </ul>
+      <Logout />
     </section>
   );
 };
